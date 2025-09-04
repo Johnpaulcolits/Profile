@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Johnson - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #667eea; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .project-overlay {
+            background: rgba(102, 126, 234, 0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">JP</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-gray-800">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-gray-800">About</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-gray-800">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-600 hover:text-gray-800">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-gray-800">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block py-2 text-gray-600">Home</a>
+                <a href="#about" class="block py-2 text-gray-600">About</a>
+                <a href="#skills" class="block py-2 text-gray-600">Skills</a>
+                <a href="#projects" class="block py-2 text-gray-600">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center text-white">
+        <div class="text-center px-6">
+            <div class="mb-6">
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center text-6xl">
+                    👨‍💻
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">Alex Johnson</h1>
+            <div class="text-xl md:text-2xl mb-8 h-8">
+                <span id="typing-text" class="typing-animation"></span>
+            </div>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Passionate full-stack developer creating beautiful, functional web experiences that make a difference.
+            </p>
+            <div class="space-x-4">
+                <button onclick="scrollToSection('projects')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                    View My Work
+                </button>
+                <button onclick="scrollToSection('contact')" class="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300">
+                    Get In Touch
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-purple-400 to-blue-500 rounded-2xl flex items-center justify-center text-8xl">
+                        🚀
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Hello! I'm Alex, a passionate developer.</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        With over 5 years of experience in web development, I specialize in creating modern, responsive applications using the latest technologies. I love turning complex problems into simple, beautiful designs.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or enjoying a good cup of coffee while planning my next creative project.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">🎯 Focus Areas</h4>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Frontend Development</li>
+                                <li>• UI/UX Design</li>
+                                <li>• Mobile Apps</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">🌟 Interests</h4>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Machine Learning</li>
+                                <li>• Open Source</li>
+                                <li>• Photography</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Skills & Technologies</h2>
+                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm card-hover fade-in">
+                    <div class="text-4xl mb-4">⚛️</div>
+                    <h3 class="text-xl font-semibold mb-4">Frontend</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            React
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            JavaScript
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            CSS/Tailwind
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            HTML5
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            TypeScript
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm card-hover fade-in">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="text-xl font-semibold mb-4">Backend</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            Node.js
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            Python
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            MongoDB
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            Express.js
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            PostgreSQL
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm card-hover fade-in">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-semibold mb-4">Tools</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            Git & GitHub
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            Docker
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            AWS
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            VS Code
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full mr-3"></span>
+                            Figma
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-gray-100 rounded-xl overflow-hidden card-hover fade-in relative">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-6xl">
+                        🌐
+                    </div>
+                    <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <button onclick="openProject('E-Commerce Platform')" class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">E-Commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">A full-stack e-commerce solution with React, Node.js, and Stripe integration.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Node.js</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-gray-100 rounded-xl overflow-hidden card-hover fade-in relative">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-6xl">
+                        📱
+                    </div>
+                    <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <button onclick="openProject('Task Management App')" class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Task Management App</h3>
+                        <p class="text-gray-600 mb-4">A collaborative task management tool with real-time updates and team features.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Vue.js</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Firebase</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">PWA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-gray-100 rounded-xl overflow-hidden card-hover fade-in relative">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center text-6xl">
+                        🎨
+                    </div>
+                    <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <button onclick="openProject('Design Portfolio')" class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Design Portfolio</h3>
+                        <p class="text-gray-600 mb-4">A creative portfolio website with smooth animations and interactive elements.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">GSAP</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Three.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-purple-600 mx-auto mb-6"></div>
+                <p class="text-gray-600 text-lg">Have a project in mind? Let's work together to bring your ideas to life!</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Let's Connect</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-xl">
+                                📧
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Email</h4>
+                                <p class="text-gray-600">alex.johnson@email.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-xl">
+                                📱
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-xl">
+                                📍
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Location</h4>
+                                <p class="text-gray-600">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-gray-800 mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <button onclick="openSocial('LinkedIn')" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300">
+                                💼
+                            </button>
+                            <button onclick="openSocial('GitHub')" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition duration-300">
+                                🐙
+                            </button>
+                            <button onclick="openSocial('Twitter')" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition duration-300">
+                                🐦
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <form id="contact-form" class="bg-white p-8 rounded-xl shadow-sm">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition duration-300" placeholder="Your Name">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition duration-300" placeholder="your.email@example.com">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition duration-300" placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                            Send Message
+                        </button>
+                        <p class="text-sm text-gray-500 mt-4 text-center">
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Demo Form</span> - This is a sample contact form
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p>&copy; 2024 Alex Johnson. Made with ❤️ and lots of ☕</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div id="modal-content" class="text-gray-600">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Typing animation
+        const texts = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver', 'Creative Thinker'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeText, typeSpeed);
+        }
+
+        // Start typing animation
+        typeText();
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll animations
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                if (isElementInViewport(element)) {
+                    element.classList.add('visible');
+                }
+            });
+
+            // Animate skill bars
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                if (isElementInViewport(bar) && !bar.classList.contains('animated')) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                    bar.classList.add('animated');
+                }
+            });
+        }
+
+        // Scroll event listener
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Navigation link clicks
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Project modal functions
+        function openProject(projectName) {
+            const modal = document.getElementById('project-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            title.textContent = projectName;
+            
+            const projectDetails = {
+                'E-Commerce Platform': {
+                    description: 'A comprehensive e-commerce solution built with modern web technologies. Features include user authentication, product catalog, shopping cart, payment processing, and admin dashboard.',
+                    features: ['User Authentication', 'Product Management', 'Shopping Cart', 'Stripe Integration', 'Admin Dashboard', 'Responsive Design'],
+                    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe API', 'JWT'],
+                    demo: 'https://demo-ecommerce.example.com',
+                    github: 'https://github.com/alexjohnson/ecommerce-platform'
+                },
+                'Task Management App': {
+                    description: 'A collaborative task management application with real-time updates. Teams can create projects, assign tasks, track progress, and communicate effectively.',
+                    features: ['Real-time Updates', 'Team Collaboration', 'Task Assignment', 'Progress Tracking', 'File Sharing', 'Mobile Responsive'],
+                    tech: ['Vue.js', 'Firebase', 'Vuex', 'PWA', 'Push Notifications'],
+                    demo: 'https://demo-taskapp.example.com',
+                    github: 'https://github.com/alexjohnson/task-management'
+                },
+                'Design Portfolio': {
+                    description: 'A creative portfolio website showcasing design work with smooth animations and interactive elements. Built with performance and user experience in mind.',
+                    features: ['Smooth Animations', 'Interactive Elements', 'Performance Optimized', 'SEO Friendly', 'Contact Forms', 'Gallery System'],
+                    tech: ['HTML5', 'CSS3', 'JavaScript', 'GSAP', 'Three.js', 'Webpack'],
+                    demo: 'https://demo-portfolio.example.com',
+                    github: 'https://github.com/alexjohnson/design-portfolio'
+                }
+            };
+            
+            const project = projectDetails[projectName];
+            if (project) {
+                content.innerHTML = `
+                    <div class="mb-6">
+                        <p class="text-gray-600 mb-4">${project.description}</p>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">Key Features:</h4>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">Technologies Used:</h4>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            ${project.tech.map(tech => `<span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">${tech}</span>`).join('')}
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <button onclick="alert('Demo link: ${project.demo}')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition duration-300">
+                                View Demo
+                            </button>
+                            <button onclick="alert('GitHub link: ${project.github}')" class="border border-purple-600 text-purple-600 px-6 py-2 rounded-lg hover:bg-purple-50 transition duration-300">
+                                View Code
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Social media functions
+        function openSocial(platform) {
+            const links = {
+                'LinkedIn': 'https://linkedin.com/in/alexjohnson',
+                'GitHub': 'https://github.com/alexjohnson',
+                'Twitter': 'https://twitter.com/alexjohnson'
+            };
+            alert(`Opening ${platform}: ${links[platform]}`);
+        }
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                alert(`Thank you ${name}! Your message has been received. I'll get back to you at ${email} soon!`);
+                this.reset();
+            } else {
+                alert('Please fill in all fields before submitting.');
+            }
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(handleScrollAnimations, 100);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979dc43f2254a9a0',t:'MTc1Njk5MTg0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
